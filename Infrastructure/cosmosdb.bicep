@@ -59,7 +59,7 @@ resource hierarchy  'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containe
   name: 'Hierarchy'
   properties: {
     resource: {
-      id: 'Records'
+      id: 'Hierarchy'
       indexingPolicy: {
         indexingMode: 'consistent'
         automatic: true
