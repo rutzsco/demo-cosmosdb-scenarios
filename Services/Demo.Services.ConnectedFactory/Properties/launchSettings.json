@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "E3D.Services.TVD": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7165",
+      "launchBrowser": false
+    }
+  }
+}

@@ -1,0 +1,11 @@
+@baseUrl = http://localhost:7165/api
+
+### Health Check
+Get  {{baseUrl}}/health
+content-type: application/json
+x-functions-key: <KEY>
+
+### Health Check Readiness
+Get  {{baseUrl}}/health/readiness
+content-type: application/json
+x-functions-key: <KEY>
