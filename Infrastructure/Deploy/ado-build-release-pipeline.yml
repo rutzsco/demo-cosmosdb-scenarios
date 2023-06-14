@@ -14,7 +14,7 @@ variables:
 stages:
 - stage: Build
   displayName: Build stage
-s
+
   jobs:
   - job: Build
     displayName: Buildd
