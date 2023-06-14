@@ -13,6 +13,8 @@ parameters:
   default: ''
 - name: cosmosDbAccountName
   default: ''
+- name: logAnalyticsWorkspaceName
+  default: ''
 - name: region
   default: ''
 - name: packageName
@@ -47,7 +49,7 @@ stages:
                 scriptLocation: inlineScript
                 inlineScript: |
                   az group create --name ${{ parameters.resourceGroupName }} --location ${{ parameters.region }}
-                  az deployment group create --resource-group ${{ parameters.resourceGroupName }} --template-file $(Pipeline.Workspace)/build/Infrastructure/main.bicep --parameters functionAppName=${{ parameters.functionAppName }} functionAppStorageAccountName=${{ parameters.storageAccountName }} cosmosDbAccountName=${{ parameters.cosmosDbAccountName }} location=${{ parameters.region }} > outputs.json
+                  az deployment group create --resource-group ${{ parameters.resourceGroupName }} --template-file $(Pipeline.Workspace)/build/Infrastructure/main.bicep --parameters functionAppName=${{ parameters.functionAppName }} functionAppStorageAccountName=${{ parameters.storageAccountName }} cosmosDbAccountName=${{ parameters.cosmosDbAccountName }} logAnalyticsWorkspaceName==${{ parameters.logAnalyticsWorkspaceName }} location=${{ parameters.region }} > outputs.json
 
             - task: AzureFunctionApp@1
               displayName: '2. Azure functions app deploy'

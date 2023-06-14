@@ -1,5 +1,6 @@
 param functionAppName string
 param storageAccountName string
+param logAnalyticsWorkspaceId string
 param location string = resourceGroup().location
 
 @secure()
@@ -20,16 +21,22 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   }
 }
 
-resource applicationInsights 'Microsoft.Insights/components@2015-05-01' = {
+resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: appInsightsName
   location: location
   kind: 'web'
   properties: {
     Application_Type: 'web'
+    Flow_Type: 'Bluefield'
+    publicNetworkAccessForIngestion: 'Enabled'
+    publicNetworkAccessForQuery: 'Enabled'
+    Request_Source: 'rest'
+    RetentionInDays: 30
+    WorkspaceResourceId: logAnalyticsWorkspaceId
   }
 }
 
-resource appservice_plan 'Microsoft.Web/serverfarms@2020-12-01' = {
+resource appservicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
   name: appServicePlanName
   location: location
   sku: {
@@ -47,7 +54,7 @@ resource functionApp 'Microsoft.Web/sites@2020-12-01' = {
   }
   
   properties: {
-    serverFarmId: appservice_plan.id
+    serverFarmId: appservicePlan.id
     siteConfig: {
       appSettings: [
         {

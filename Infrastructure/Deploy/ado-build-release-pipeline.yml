@@ -51,6 +51,7 @@ stages:
     resourceGroupName: 'demo-connected-factory-service-ci'
     storageAccountName: 'democfservicecisa'
     functionAppName: 'demo-connected-factory-service-ci'
+    logAnalyticsWorkspaceName: 'demo-connected-factory-service-ci'
     cosmosDbAccountName: 'demo-connected-factory-service-db-ci'
     region: 'eastus'
     packageName: ${{ variables.packageName }}
