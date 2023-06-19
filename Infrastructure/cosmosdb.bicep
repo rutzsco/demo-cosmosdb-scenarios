@@ -54,12 +54,12 @@ resource database  'Microsoft.DocumentDB/databaseAccounts/sqlDatabases@2020-06-0
   }
 }
 
-resource hierarchy  'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers@2020-06-01-preview' = {
+resource measurements  'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers@2020-06-01-preview' = {
   parent: database
-  name: 'Hierarchy'
+  name: 'Measurement'
   properties: {
     resource: {
-      id: 'Hierarchy'
+      id: 'Measurement'
       indexingPolicy: {
         indexingMode: 'consistent'
         automatic: true

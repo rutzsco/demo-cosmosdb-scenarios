@@ -22,10 +22,10 @@ namespace Demo.Services.ConnectedFactory.Data
 
         public async Task<IEnumerable<Record>> Readiness()
         {
-            var db = _cosmosClient.GetDatabase("TVD");
-            var container = db.GetContainer("Records");
+            var db = _cosmosClient.GetDatabase("ConnectedFactory");
+            var container = db.GetContainer("Measurement");
 
-            QueryDefinition query = new QueryDefinition("SELECT TOP 1 * FROM r");
+            QueryDefinition query = new QueryDefinition("SELECT TOP 1 * FROM m");
             List<Record> results = new();
             using (FeedIterator<Record> resultSetIterator = container.GetItemQueryIterator<Record>(query, requestOptions: new QueryRequestOptions() { }))
             {
