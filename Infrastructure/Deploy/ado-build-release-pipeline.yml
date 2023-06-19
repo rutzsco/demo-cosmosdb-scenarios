@@ -50,7 +50,7 @@ stages:
     azureSubscription: ${{ variables.azureSubscription }}
     resourceGroupName: 'demo-connected-factory-service-ci'
     storageAccountName: 'democfservicecisa'
-    functionAppName: 'demo-connected-factory-service-ci'
+    functionAppName: 'demo-connected-factory-service'
     logAnalyticsWorkspaceName: 'demo-connected-factory-service-ci'
     cosmosDbAccountName: 'demo-connected-factory-service-db-ci'
     region: 'eastus'
