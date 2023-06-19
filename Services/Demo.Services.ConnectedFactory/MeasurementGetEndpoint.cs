@@ -14,20 +14,20 @@ using Microsoft.Azure.Cosmos;
 
 namespace Demo.Services.ConnectedFactory
 {
-    public class RecordGetEndpoint
+    public class MeasurementGetEndpoint
     {
         private CosmosClient _cosmosClient;
 
-        public RecordGetEndpoint(CosmosClient cosmosClient)
+        public MeasurementGetEndpoint(CosmosClient cosmosClient)
         {
             _cosmosClient = cosmosClient;
         }
 
-        [FunctionName("RecordGetEndpoint")]
-        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "records")] HttpRequest req, ILogger log)
+        [FunctionName("MeasurementGetEndpoint")]
+        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "Measurements")] HttpRequest req, ILogger log)
         {
             var dataAccess = new CosmosDataAccessLogic(log, _cosmosClient);
-            var results = await dataAccess.Readiness();
+            var results = await dataAccess.Measurements();
             return new OkObjectResult(results);
         }
     }

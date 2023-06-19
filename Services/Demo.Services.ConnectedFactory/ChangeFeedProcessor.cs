@@ -14,7 +14,7 @@ namespace Demo.Services.ConnectedFactory
         public static void Run([CosmosDBTrigger(databaseName: "ConnectedFactory", containerName: "Measurement", 
             Connection = "CosmosDBConnection",
             LeaseContainerName = "leases",
-            CreateLeaseContainerIfNotExists = true)]IReadOnlyList<Record> input,
+            CreateLeaseContainerIfNotExists = true)]IReadOnlyList<Measurement> input,
             ILogger log)
         {
             if (input != null && input.Count > 0)

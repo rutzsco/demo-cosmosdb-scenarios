@@ -20,7 +20,7 @@ namespace Demo.Services.ConnectedFactory
             builder.Services.AddHttpClient();
             builder.Services.AddSingleton((s) =>
             {
-                string connectionString = configuration["CosmosDBConnectionString"];
+                string connectionString = configuration["CosmosDBConnection"];
                 CosmosClientBuilder configurationBuilder = new CosmosClientBuilder(connectionString);
                 return configurationBuilder
                         .Build();

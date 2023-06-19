@@ -9,3 +9,14 @@ x-functions-key: <KEY>
 Get  {{baseUrl}}/health/readiness
 content-type: application/json
 x-functions-key: <KEY>
+
+### Health Check Readiness
+POST  {{baseUrl}}/Measurement
+content-type: application/json
+x-functions-key: <KEY>
+
+{
+  "id": "A",
+  "name": "tempurature",
+  "value": "32"
+}

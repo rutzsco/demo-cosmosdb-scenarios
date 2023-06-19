@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Demo.Services.ConnectedFactory.Data
 {
-    public class Record
+    public class Measurement
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -17,5 +17,9 @@ namespace Demo.Services.ConnectedFactory.Data
 
         [JsonProperty("value")]
         public string Value { get; set; }
+
+        [JsonProperty("extendedInformation")]
+        public string ExtendedInformation { get; set; }
+
     }
 }

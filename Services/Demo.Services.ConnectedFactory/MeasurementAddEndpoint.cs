@@ -14,22 +14,22 @@ using Microsoft.Azure.Cosmos;
 
 namespace Demo.Services.ConnectedFactory
 {
-    public class RecordAddEndpoint
+    public class MeasurementAddEndpoint
     {
         private CosmosClient _cosmosClient;
 
-        public RecordAddEndpoint(CosmosClient cosmosClient)
+        public MeasurementAddEndpoint(CosmosClient cosmosClient)
         {
             _cosmosClient = cosmosClient;
         }
 
-        [FunctionName("RecordAddEndpoint")]
-        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = "record")] HttpRequest req, [CosmosDB(databaseName: "Measurements", containerName: "Records", Connection = "CosmosDBConnection", CreateIfNotExists = true)] IAsyncCollector<Record> documents, ILogger log)
+        [FunctionName("MeasurementAddEndpoint")]
+        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = "Measurement")] HttpRequest req, [CosmosDB(databaseName: "Measurements", containerName: "Records", Connection = "CosmosDBConnection", CreateIfNotExists = true, PartitionKey="/id")] IAsyncCollector<Measurement> documents, ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            var record = JsonConvert.DeserializeObject<Record>(requestBody);
+            var record = JsonConvert.DeserializeObject<Measurement>(requestBody);
             await documents.AddAsync(record);
 
             return new OkObjectResult("OK");
