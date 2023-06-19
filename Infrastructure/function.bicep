@@ -86,7 +86,7 @@ resource functionApp 'Microsoft.Web/sites@2020-12-01' = {
           value: '~14'
         }
         {
-          name: 'CosmosDBConnectionString'
+          name: 'CosmosDBConnection'
           value: cosmosDBConnectionString
         }
       ]

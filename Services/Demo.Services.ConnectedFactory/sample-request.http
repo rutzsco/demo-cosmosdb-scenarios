@@ -1,4 +1,5 @@
-@baseUrl = http://localhost:7165/api
+#@baseUrl = http://localhost:7165/api
+@baseUrl = https://demo-connected-factory-service-ci.azurewebsites.net
 
 ### Health Check
 Get  {{baseUrl}}/health
