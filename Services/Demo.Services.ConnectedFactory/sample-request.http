@@ -10,13 +10,12 @@ Get  {{baseUrl}}/health/readiness
 content-type: application/json
 x-functions-key: <KEY>
 
-### Health Check Readiness
+### Add Measurement
 POST  {{baseUrl}}/Measurement
 content-type: application/json
 x-functions-key: <KEY>
 
 {
-  "id": "A",
-  "name": "tempurature",
+  "name": "temperature",
   "value": "32"
 }

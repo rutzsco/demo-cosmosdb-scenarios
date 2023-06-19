@@ -30,9 +30,11 @@ namespace Demo.Services.ConnectedFactory
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             var record = JsonConvert.DeserializeObject<Measurement>(requestBody);
+            record.Id = Guid.NewGuid().ToString();
+            
             await documents.AddAsync(record);
 
-            return new OkObjectResult("OK");
+            return new OkObjectResult(record.Id);
         }
     }
 }
