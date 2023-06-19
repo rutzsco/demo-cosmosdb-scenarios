@@ -12,7 +12,7 @@ namespace Demo.Services.ConnectedFactory
     {
         [FunctionName("ChangeFeedProcessor")]
         public static void Run([CosmosDBTrigger(databaseName: "ConnectedFactory", containerName: "Measurement", 
-            Connection = "CosmosDBConnectionString"     ,
+            Connection = "CosmosDBConnection",
             LeaseContainerName = "leases",
             CreateLeaseContainerIfNotExists = true)]IReadOnlyList<Record> input,
             ILogger log)
