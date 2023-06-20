@@ -17,7 +17,7 @@ stages:
 
   jobs:
   - job: Build
-    displayName: Buildd
+    displayName: Build
     steps:
 
     - task: DotNetCoreCLI@2
