@@ -91,8 +91,14 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
           value: cosmosDBConnectionString
         }
       ]
+      cors: {
+        allowedOrigins: [
+          'https://portal.azure.com'
+        ]
+      }
       ftpsState: 'FtpsOnly'
       minTlsVersion: '1.2'
+      netFrameworkVersion: 'v6.0'
     }
     httpsOnly: true
   }
