@@ -25,6 +25,9 @@ stages:
       inputs:
         projects: ' $(rootDirectory)/**/*.csproj'
         arguments: '--output publish_output --configuration Release'
+        publishWebProjects: false
+        modifyOutputPath: false
+        zipAfterPublish: false
     - task: DotNetCoreCLI@2
       displayName: 'Publish project'
       inputs:
