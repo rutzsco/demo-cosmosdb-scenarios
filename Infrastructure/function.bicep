@@ -21,7 +21,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   }
 }
 
-resource c 'Microsoft.Insights/components@2020-02-02' = {
+resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: appInsightsName
   location: location
   kind: 'web'
@@ -63,7 +63,7 @@ resource functionApp 'Microsoft.Web/sites@2020-12-01' = {
         }
         {
           name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
-          value: reference(storageAccount.id, '2015-05-01').InstrumentationKey
+          value: applicationInsights.properties.InstrumentationKey
         }
         {
           name: 'FUNCTIONS_EXTENSION_VERSION'
