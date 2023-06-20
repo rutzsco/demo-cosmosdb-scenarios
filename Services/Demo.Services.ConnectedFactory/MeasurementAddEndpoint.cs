@@ -24,7 +24,7 @@ namespace Demo.Services.ConnectedFactory
         }
 
         [FunctionName("MeasurementAddEndpoint")]
-        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = "Measurement")] HttpRequest req, [CosmosDB(databaseName: "Measurements", containerName: "Records", Connection = "CosmosDBConnection", CreateIfNotExists = true, PartitionKey="/id")] IAsyncCollector<Measurement> documents, ILogger log)
+        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = "Measurement")] HttpRequest req, [CosmosDB(databaseName: "ConnectedFactory", containerName: "Measurements", Connection = "CosmosDBConnection", CreateIfNotExists = true, PartitionKey="/id")] IAsyncCollector<Measurement> documents, ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
