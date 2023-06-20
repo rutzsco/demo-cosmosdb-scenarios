@@ -57,5 +57,5 @@ stages:
     logAnalyticsWorkspaceName: 'demo-connected-factory-service-ci'
     cosmosDbAccountName: 'demo-connected-factory-service-db-ci'
     region: 'eastus'
-    packageName: ${{ variables.packageName }}
+    packageName: 'Demo.Services.ConnectedFactory.zip'
 
