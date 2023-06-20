@@ -51,11 +51,11 @@ stages:
                   az group create --name ${{ parameters.resourceGroupName }} --location ${{ parameters.region }}
                   az deployment group create --resource-group ${{ parameters.resourceGroupName }} --template-file $(Pipeline.Workspace)/build/Infrastructure/main.bicep --parameters functionAppName=${{ parameters.functionAppName }} functionAppStorageAccountName=${{ parameters.storageAccountName }} cosmosDbAccountName=${{ parameters.cosmosDbAccountName }} logAnalyticsWorkspaceName=${{ parameters.logAnalyticsWorkspaceName }} location=${{ parameters.region }} > outputs.json
 
-            - task: AzureFunctionApp@1
+            - task: AzureFunctionApp@2
               displayName: '2. Azure functions app deploy'
               inputs:
                 azureSubscription: ${{ parameters.azureSubscription }}
                 appType: functionApp
                 appName: ${{ parameters.functionAppName }}
                 package: '$(Pipeline.Workspace)/build/App/${{ parameters.packageName }}'
-                AppSettings: ''
+                deploymentMethod: 'auto'
