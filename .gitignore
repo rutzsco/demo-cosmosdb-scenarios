@@ -396,3 +396,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+Services/Demo.Services.ConnectedFactory/Demo.Services.ConnectedFactory/Properties/serviceDependencies.local.json

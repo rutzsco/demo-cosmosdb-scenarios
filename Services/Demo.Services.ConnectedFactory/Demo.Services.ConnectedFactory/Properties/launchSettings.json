@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "E3D.Services.TVD": {
+    "Demo.Services.ConnectedFactory": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7165",
+      "commandLineArgs": "--port 7034",
       "launchBrowser": false
     }
   }
