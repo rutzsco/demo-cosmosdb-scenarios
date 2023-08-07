@@ -38,5 +38,13 @@ namespace Demo.Services.ConnectedFactory
             var results = await dataAccess.MeasurementByIdQuery(id);
             return new OkObjectResult(results);
         }
+
+        [FunctionName("MeasurementGetByIdPREndpoint")]
+        public async Task<IActionResult> RunGetByIdPointRead([HttpTrigger(AuthorizationLevel.Function, "get", Route = "Measurements/pr/{id}")] HttpRequest req, string id, ILogger log)
+        {
+            var dataAccess = new CosmosDataAccessLogic(log, _cosmosClient);
+            var results = await dataAccess.MeasurementByIdPointRead(id);
+            return new OkObjectResult(results);
+        }
     }
 }

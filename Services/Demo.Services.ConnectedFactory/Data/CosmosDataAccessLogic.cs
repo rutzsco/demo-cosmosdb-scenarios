@@ -49,14 +49,28 @@ namespace Demo.Services.ConnectedFactory.Data
             List<Measurement> results = new();
             using (FeedIterator<Measurement> resultSetIterator = container.GetItemQueryIterator<Measurement>(query, requestOptions: new QueryRequestOptions() { }))
             {
+                double totalRU = 0;
                 while (resultSetIterator.HasMoreResults)
                 {
                     FeedResponse<Measurement> response = await resultSetIterator.ReadNextAsync();
+                    totalRU += response.RequestCharge;
                     results.AddRange(response);
                 }
+                _logger.LogMetric("RequestChargeMeasurementByIdQuery", totalRU);
             }
 
             return results.Single();
+        }
+
+        public async Task<Measurement> MeasurementByIdPointRead(string id)
+        {
+            var db = _cosmosClient.GetDatabase("ConnectedFactory");
+            var container = db.GetContainer("Measurements");
+
+            var measurement = await container.ReadItemAsync<Measurement>(id: id, partitionKey: new PartitionKey(id));
+            _logger.LogMetric("RequestChargeMeasurementByIdPointRead", measurement.RequestCharge);
+
+            return measurement;
         }
 
         public async Task<IEnumerable<Measurement>> Readiness()
