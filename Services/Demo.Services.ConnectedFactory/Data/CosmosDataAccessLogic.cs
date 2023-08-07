@@ -38,23 +38,25 @@ namespace Demo.Services.ConnectedFactory.Data
             return results;
         }
 
-        public async Task<IEnumerable<Context>> Context()
+        public async Task<Measurement> MeasurementByIdQuery(string id)
         {
             var db = _cosmosClient.GetDatabase("ConnectedFactory");
             var container = db.GetContainer("Context");
 
-            QueryDefinition query = new QueryDefinition("SELECT * FROM c");
-            List<Context> results = new();
-            using (FeedIterator<Context> resultSetIterator = container.GetItemQueryIterator<Context>(query, requestOptions: new QueryRequestOptions() { }))
+            QueryDefinition query = new QueryDefinition("SELECT * FROM c where id = @id")
+                .WithParameter("@id", id);
+
+            List<Measurement> results = new();
+            using (FeedIterator<Measurement> resultSetIterator = container.GetItemQueryIterator<Measurement>(query, requestOptions: new QueryRequestOptions() { }))
             {
                 while (resultSetIterator.HasMoreResults)
                 {
-                    FeedResponse<Context> response = await resultSetIterator.ReadNextAsync();
+                    FeedResponse<Measurement> response = await resultSetIterator.ReadNextAsync();
                     results.AddRange(response);
                 }
             }
 
-            return results;
+            return results.Single();
         }
 
         public async Task<IEnumerable<Measurement>> Readiness()
