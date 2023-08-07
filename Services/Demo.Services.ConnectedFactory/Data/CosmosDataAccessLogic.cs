@@ -19,6 +19,18 @@ namespace Demo.Services.ConnectedFactory.Data
             _logger = logger;
         }
 
+        public async Task AddMeasurement(Measurement measurement)
+        {
+            var db = _cosmosClient.GetDatabase("ConnectedFactory");
+            var container = db.GetContainer("Measurements");
+
+            var response = await container.CreateItemAsync<Measurement>(
+               item: measurement,
+               partitionKey: new PartitionKey(measurement.Id));
+
+            _logger.LogMetric("RequestChargeAddMeasurement", response.RequestCharge);
+        }
+
         public async Task<IEnumerable<Measurement>> Measurements()
         {
             var db = _cosmosClient.GetDatabase("ConnectedFactory");
@@ -34,7 +46,7 @@ namespace Demo.Services.ConnectedFactory.Data
                     results.AddRange(response);
                 }
             }
-
+  
             return results;
         }
 
