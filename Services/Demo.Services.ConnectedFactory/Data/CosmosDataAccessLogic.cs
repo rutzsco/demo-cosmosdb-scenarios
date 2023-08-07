@@ -22,7 +22,7 @@ namespace Demo.Services.ConnectedFactory.Data
         public async Task<IEnumerable<Measurement>> Measurements()
         {
             var db = _cosmosClient.GetDatabase("ConnectedFactory");
-            var container = db.GetContainer("Measurement");
+            var container = db.GetContainer("Measurements");
 
             QueryDefinition query = new QueryDefinition("SELECT * FROM m");
             List<Measurement> results = new();
@@ -41,9 +41,9 @@ namespace Demo.Services.ConnectedFactory.Data
         public async Task<Measurement> MeasurementByIdQuery(string id)
         {
             var db = _cosmosClient.GetDatabase("ConnectedFactory");
-            var container = db.GetContainer("Context");
+            var container = db.GetContainer("Measurements");
 
-            QueryDefinition query = new QueryDefinition("SELECT * FROM c where id = @id")
+            QueryDefinition query = new QueryDefinition("SELECT * FROM c where c.id = @id")
                 .WithParameter("@id", id);
 
             List<Measurement> results = new();
@@ -62,7 +62,7 @@ namespace Demo.Services.ConnectedFactory.Data
         public async Task<IEnumerable<Measurement>> Readiness()
         {
             var db = _cosmosClient.GetDatabase("ConnectedFactory");
-            var container = db.GetContainer("Measurement");
+            var container = db.GetContainer("Measurements");
 
             QueryDefinition query = new QueryDefinition("SELECT TOP 1 * FROM m");
             List<Measurement> results = new();
